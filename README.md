@@ -81,9 +81,21 @@ Equal balances       2000000000000000000000000      1999999999999999966445568   
 The A parameter can be deployed with confidence.
 ```
 
-## Key Finding
+## Key Finding: A Parameter Scaling
 
-The C++ simulator expects raw A values, while the Vyper contract expects A pre-multiplied by A_MULTIPLIER (10000). The wrapper (`src/cpp_wrapper.cpp`) handles this conversion by dividing A by 10000 before passing it to the simulator functions.
+The C++ simulator expects raw A values, while the Vyper contract internally divides A by A_MULTIPLIER (10000). To ensure equivalence:
+
+- **Vyper contract**: Pass A pre-multiplied by 10000 (e.g., A=100 → pass 1000000)
+- **C++ simulator**: Pass raw A values (e.g., A=100 → pass 100)
+
+The test script (`src/test_equivalence.py`) handles this by dividing the Vyper A value by 10000 when calling C++ functions:
+```python
+# Vyper call with pre-multiplied A
+vyper_D = stableswap.newton_D_2(A, gamma, [x0, x1], D0)
+
+# C++ call with raw A (divide by 10000)
+cpp_D = cpp_lib.python_newton_D_2(A / 10000, gamma, x0, x1, D0)
+```
 
 ## Test Cases
 
