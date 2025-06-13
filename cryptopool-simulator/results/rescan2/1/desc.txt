@@ -1,1 +1,0 @@
-Scan with fee=10 bps = const

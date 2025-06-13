@@ -1,3 +1,0 @@
-scan gamma
-A=0.6561
-gamma=1.545e-4  # scan
