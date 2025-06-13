@@ -1,0 +1,8 @@
+[submodule "cryptopool-simulator"]
+	path = cryptopool-simulator
+	url = https://github.com/curvefi/cryptopool-simulator.git
+	branch = extra_boost
+[submodule "twocrypto-ng"]
+	path = twocrypto-ng
+	url = https://github.com/curvefi/twocrypto-ng.git
+	branch = invariant-change

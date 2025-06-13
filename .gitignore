@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.Python
+
+# uv
+.venv/
+uv.lock
+
+# Compiled files
+*.so
+*.o
+*.a
+
+# IDE
+.vscode/
+.idea/
+
+# Test outputs
+*.log
+task.txt
+.devcontainer/
