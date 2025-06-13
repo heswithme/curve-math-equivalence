@@ -77,9 +77,9 @@ class MathTester:
         xp = [x0, x1]
         vyper_D = self.vyper_math.newton_D(A, 145000000000000, xp)
         
-        # C++ call (A is divided by 10000 in wrapper)
+        # C++ call (C++ expects raw A, so divide by 10000)
         cpp_D = self.cpp_lib.python_newton_D_2(
-            ctypes.c_longdouble(A),
+            ctypes.c_longdouble(A / 10000),
             ctypes.c_longdouble(145000000000000),
             ctypes.c_longdouble(x0),
             ctypes.c_longdouble(x1),
@@ -98,9 +98,9 @@ class MathTester:
         vyper_y_result = self.vyper_math.get_y(A, 145000000000000, xp, D, i)
         vyper_y = vyper_y_result[0]
         
-        # C++ call
+        # C++ call (C++ expects raw A, so divide by 10000)
         cpp_y = self.cpp_lib.python_newton_y(
-            ctypes.c_longdouble(A),
+            ctypes.c_longdouble(A / 10000),
             ctypes.c_longdouble(145000000000000),
             ctypes.c_longdouble(x0),
             ctypes.c_longdouble(x1),
